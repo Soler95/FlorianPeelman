@@ -53,20 +53,21 @@
       <h2>Upcoming<br /><em>Events</em></h2>
       <div class="events-list">
 
-  </div>
-</section>
 
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand">FLORIAN PEELMAN</div>
+      <div class="footer-brand">PETER HÖRR</div>
       <nav class="footer-nav">
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
         <a href="#contact">Contact</a>
       </nav>
-      <small class="footer-copy">&copy; <span id="year"></span> Florian Peelman. All rights reserved.</small>
+      <small class="footer-copy">&copy; <span id="year"></span> Peter Hörr. All rights reserved.</small>
     </div>
   </footer>
 
@@ -151,7 +152,7 @@ btn.addEventListener('click', function() {
 
 <!-- SCRIPT CALENDARIO GOOGLE SHEETS -->
   <script>
-    const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQayu9W_U8GOJuAbtoTwruRXO5xbMjfgx_5aFiV0k7H9_P5xKBBwj-OU0Xjw1FIQQ4lIJRUbMza6Z9R/pub?gid=1740305642&single=true&output=csv';
+    const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTn1g8XWcBeNSZLfI80KQ2yX8OuSGgW3uhx0LGDekNlIQUe03zSUZdrQo4fV4eZUTAp_5PWyHA5EZmh/pub?gid=0&single=true&output=csv';
 
     function formatearFecha(fechaStr) {
       const fecha = new Date(fechaStr + 'T00:00:00');
@@ -240,3 +241,4 @@ lista.innerHTML = eventos.map(e => `
   
 </body>
 </html>
+
