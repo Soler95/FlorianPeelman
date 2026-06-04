@@ -923,7 +923,7 @@ p + p { margin-top: 1rem; }
 }
 @media (max-width: 768px) {
   body.bio .hero-bg img {
-    object-position: 60% 5%;
-    transform: scale(1.15);
+    object-position: 65% 5% !important;
+    transform: scale(1.15) !important;
   }
 }
