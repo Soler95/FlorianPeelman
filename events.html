@@ -5,21 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Florian Peelman — Renowned violist performing across Europe and internationally." />
   <title>Florian Peelman — Violist</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- HEADER -->
   <header class="header" id="header">
     <a class="logo" href="index.html">FLORIAN PEELMAN</a>
+
     <button class="menu-toggle" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
+
     <nav class="nav" id="nav">
       <a href="#home">Home</a>
       <a href="#bio">Biography</a>
@@ -32,60 +37,73 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg">
-  <img src="florianpeelman.jpg.jpg" alt="Florian Peelman">
-</div>
+      <img src="florianpeelman.jpg.jpg" alt="Florian Peelman">
+    </div>
+
     <div class="hero-content">
       <h1 class="hero-title">Florian<br /><em>Peelman</em></h1>
       <p class="hero-sub">VIOLIST</p>
       <a class="btn btn--outline" href="bio.html">Learn More</a>
     </div>
+
     <div class="hero-scroll">
       <span>Scroll</span>
       <div class="hero-scroll-line"></div>
     </div>
   </section>
+
   <!-- CALENDAR -->
   <section class="section" id="calendar">
     <div class="container">
       <span class="label">Concerts</span>
       <h2>Upcoming<br /><em>Events</em></h2>
-      <div class="events-list">
 
+      <div class="events-list"></div>
     </div>
   </section>
-  
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">FLORIAN PEELMAN</div>
+
       <nav class="footer-nav">
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
         <a href="#contact">Contact</a>
       </nav>
-      <small class="footer-copy">&copy; <span id="year"></span> Florian Peelman. All rights reserved.</small>
+
+      <small class="footer-copy">
+        &copy; <span id="year"></span> Florian Peelman. All rights reserved.
+      </small>
     </div>
   </footer>
-<!-- SCRIPT CALENDARIO GOOGLE SHEETS -->
+
+  <!-- SCRIPT CALENDARIO GOOGLE SHEETS -->
   <script>
     const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQayu9W_U8GOJuAbtoTwruRXO5xbMjfgx_5aFiV0k7H9_P5xKBBwj-OU0Xjw1FIQQ4lIJRUbMza6Z9R/pub?gid=0&single=true&output=csv';
 
     function formatearFecha(fechaStr) {
       const fecha = new Date(fechaStr + 'T00:00:00');
       return fecha.toLocaleDateString('en-GB', {
-        day: 'numeric', month: 'long', year: 'numeric'
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
       });
     }
 
     function parsearCSV(texto) {
       const filas = [];
       const lineas = texto.trim().split('\n');
+
       const parsearLinea = linea => {
         const cols = [];
         let actual = '';
         let dentroComillas = false;
+
         for (let i = 0; i < linea.length; i++) {
           const c = linea[i];
+
           if (c === '"') {
             dentroComillas = !dentroComillas;
           } else if (c === ',' && !dentroComillas) {
@@ -95,56 +113,68 @@
             actual += c;
           }
         }
+
         cols.push(actual.trim());
         return cols;
       };
 
       const cabeceras = parsearLinea(lineas[0]);
+
       for (let i = 1; i < lineas.length; i++) {
         if (!lineas[i].trim()) continue;
+
         const valores = parsearLinea(lineas[i]);
         const obj = {};
+
         cabeceras.forEach((cab, j) => {
           obj[cab] = valores[j] || '';
         });
+
         filas.push(obj);
       }
+
       return filas;
     }
 
-fetch(URL_SHEET)
-      .then(r => {
-        console.log('Respuesta Google:', r.status);
-        return r.text();
-      })
+    fetch(URL_SHEET)
+      .then(r => r.text())
       .then(csv => {
-        console.log('CSV recibido:', csv.substring(0, 200));
+
         const eventos = parsearCSV(csv);
+
+        // ordenar por fecha
         eventos.sort((a, b) => new Date(a.Date) - new Date(b.Date));
-        console.log('Eventos encontrados:', eventos.length);
-        console.log('Primer evento:', eventos[0]);
+
         const lista = document.querySelector('.events-list');
+        lista.innerHTML = '';
+
         if (!eventos.length) {
           lista.innerHTML = '<p>No upcoming events.</p>';
           return;
         }
-lista.innerHTML = eventos.map(e => `
-  <article class="event-card is-visible">
+
+        lista.innerHTML = eventos.map(e => `
+          <article class="event-card is-visible">
             <div class="event-meta">
               <time class="event-date" datetime="${e.Date}">
                 ${formatearFecha(e.Date)}
               </time>
-              <span class="event-city">${e.City}</span>
+              <span class="event-city">${e.City || ''}</span>
             </div>
+
             <div class="event-body">
-              <h3 class="event-venue">${e.Venue}</h3>
-              <p class="event-program">${e.Program}</p>
+              <h3 class="event-venue">${e.Venue || ''}</h3>
+              <p class="event-program">${e.Program || ''}</p>
             </div>
+
             <a class="event-link" href="${e.Link || '#'}">
               <span>Details</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" 
-                      stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
               </svg>
             </a>
           </article>
@@ -152,9 +182,12 @@ lista.innerHTML = eventos.map(e => `
       })
       .catch(err => {
         console.log('Error:', err);
-        document.querySelector('.events-list').innerHTML = '<p>Could not load events.</p>';
+        document.querySelector('.events-list').innerHTML =
+          '<p>Could not load events.</p>';
       });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  
+
 </body>
 </html>
