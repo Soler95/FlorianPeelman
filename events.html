@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Florian Peelman — Renowned violist performing across Europe and internationally." />
-  <title>Florian Peelman — Violist</title>
+  <title>Florian Peelman — Events</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -21,29 +21,13 @@
       <span></span>
     </button>
     <nav class="nav" id="nav">
-      <a href="#home">Home</a>
-      <a href="#bio">Biography</a>
-      <a href="#media">Media</a>
-      <a href="#calendar">Calendar</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="bio.html">Biography</a>
+      <a href="media.html">Media</a>
+      <a href="events.html">Calendar</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </header>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <img src="florianpeelman.jpg.jpg" alt="Florian Peelman">
-    </div>
-    <div class="hero-content">
-      <h1 class="hero-title">Florian<br /><em>Peelman</em></h1>
-      <p class="hero-sub">VIOLIST</p>
-      <a class="btn btn--outline" href="bio.html">Learn More</a>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
-  </section>
 
   <!-- CALENDAR -->
   <section class="section" id="calendar">
@@ -72,7 +56,7 @@
       <nav class="footer-nav">
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a href="#contact">Contact</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
       <small class="footer-copy">&copy; <span id="year"></span> Florian Peelman. All rights reserved.</small>
     </div>
@@ -116,7 +100,7 @@
       }
     });
 
-    // Cookie banner — FIX: element now exists in HTML
+    // Cookie banner
     function acceptCookies() {
       localStorage.setItem('cookies', 'accepted');
       document.getElementById('cookieBanner').style.display = 'none';
@@ -144,14 +128,12 @@
 
   <!-- GOOGLE SHEETS CALENDAR SCRIPT -->
   <script>
-    // FIX: updated to correct published CSV URL
     const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQayu9W_U8GOJuAbtoTwruRXO5xbMjfgx_5aFiV0k7H9_P5xKBBwj-OU0Xjw1FIQQ4lIJRUbMza6Z9R/pub?gid=0&single=true&output=csv';
 
-    // FIX: expects dates in YYYY-MM-DD format in the spreadsheet
     function formatDate(dateStr) {
       if (!dateStr) return '';
       const date = new Date(dateStr + 'T00:00:00');
-      if (isNaN(date)) return dateStr; // return raw string if unparseable
+      if (isNaN(date)) return dateStr;
       return date.toLocaleDateString('en-GB', {
         day: 'numeric', month: 'long', year: 'numeric'
       });
@@ -197,25 +179,21 @@
 
     fetch(URL_SHEET)
       .then(function (r) {
-        if (!r.ok) throw new Error('Network response was not ok: ' + r.status);
+        if (!r.ok) throw new Error('HTTP error: ' + r.status);
         return r.text();
       })
       .then(function (csv) {
         const events = parseCSV(csv);
+        console.log('Column headers found:', Object.keys(events[0] || {}));
+        console.log('Events found:', events.length);
 
         if (!events.length) {
           lista.innerHTML = '<p>No upcoming events.</p>';
           return;
         }
 
-        // FIX: log headers so you can verify column names match your sheet
-        console.log('Column headers found:', Object.keys(events[0]));
-
         lista.innerHTML = events.map(function (e) {
-          const link = e.Link && e.Link !== '#' && e.Link !== ''
-            ? e.Link
-            : null;
-
+          const link = e.Link && e.Link !== '#' && e.Link !== '' ? e.Link : null;
           return `
             <article class="event-card is-visible">
               <div class="event-meta">
