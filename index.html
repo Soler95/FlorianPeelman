@@ -297,6 +297,7 @@ fetch(URL_SHEET)
       .then(csv => {
         console.log('CSV recibido:', csv.substring(0, 200));
         const eventos = parsearCSV(csv);
+        eventos.sort((a, b) => new Date(a.Date) - new Date(b.Date));
         console.log('Eventos encontrados:', eventos.length);
         console.log('Primer evento:', eventos[0]);
         const lista = document.querySelector('.events-list');
@@ -304,7 +305,7 @@ fetch(URL_SHEET)
           lista.innerHTML = '<p>No upcoming events.</p>';
           return;
         }
-lista.innerHTML = eventos.map(e => `
+lista.innerHTML = eventos.slice(0, 2).map(e => `
   <article class="event-card is-visible">
             <div class="event-meta">
               <time class="event-date" datetime="${e.Date}">
