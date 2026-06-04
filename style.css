@@ -921,3 +921,9 @@ p + p { margin-top: 1rem; }
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   margin-bottom: 1.5rem;
 }
+@media (max-width: 768px) {
+  body.bio .hero-bg img {
+    object-position: center 5%;
+    transform: scale(1.12);
+  }
+}
