@@ -1,6 +1,3 @@
-
-raw
-Students · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +5,12 @@ Students · HTML
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Florian Peelman — Students" />
   <title>Florian Peelman — Students</title>
- 
+
   <!-- ─── FONTS (match site aesthetic: elegant serif + clean sans) ─── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
- 
+
   <style>
     /* ─────────────── VARIABLES ─────────────── */
     :root {
@@ -30,7 +27,7 @@ Students · HTML
       --nav-h:       72px;
       --transition:  0.35s cubic-bezier(0.4,0,0.2,1);
     }
- 
+
     /* ─────────────── RESET ─────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -44,7 +41,7 @@ Students · HTML
     }
     img { display: block; max-width: 100%; }
     a  { color: inherit; text-decoration: none; }
- 
+
     /* ─────────────── NAV ─────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -76,7 +73,7 @@ Students · HTML
     }
     .nav-links a:hover,
     .nav-links a.active { color: var(--accent); }
- 
+
     /* ─────────────── HERO BANNER ─────────────── */
     .hero {
       margin-top: var(--nav-h);
@@ -119,14 +116,14 @@ Students · HTML
       margin-left: auto;
       margin-right: auto;
     }
- 
+
     /* ─────────────── MAIN GRID ─────────────── */
     .students-section {
       max-width: 1100px;
       margin: 0 auto;
       padding: 72px 48px 100px;
     }
- 
+
     /* loading / error states */
     .status {
       text-align: center;
@@ -136,13 +133,13 @@ Students · HTML
       color: var(--text-muted);
     }
     .status.error { color: #e07070; }
- 
+
     .students-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
     }
- 
+
     /* ─────────────── STUDENT CARD ─────────────── */
     .student-card {
       background: var(--surface);
@@ -155,7 +152,7 @@ Students · HTML
       border-color: rgba(200,169,126,0.3);
       box-shadow: 0 8px 40px rgba(0,0,0,0.4);
     }
- 
+
     /* photo */
     .card-photo {
       position: relative;
@@ -181,7 +178,7 @@ Students · HTML
       font-size: 11px;
       letter-spacing: 0.1em;
     }
- 
+
     /* card body */
     .card-body {
       padding: 20px 24px;
@@ -200,7 +197,7 @@ Students · HTML
       color: var(--accent);
       margin-bottom: 16px;
     }
- 
+
     /* accordion toggle */
     .bio-toggle {
       width: 100%;
@@ -223,7 +220,7 @@ Students · HTML
     }
     .bio-toggle:hover { color: var(--accent); }
     .bio-toggle:hover .toggle-icon { border-color: var(--accent); }
- 
+
     .toggle-label { flex: 1; text-align: left; }
     .toggle-icon {
       width: 22px; height: 22px;
@@ -244,7 +241,7 @@ Students · HTML
       stroke-linecap: round;
       stroke-linejoin: round;
     }
- 
+
     /* open state */
     .student-card.open .toggle-icon {
       background: var(--accent-dim);
@@ -255,7 +252,7 @@ Students · HTML
       transform: rotate(180deg);
     }
     .student-card.open .bio-toggle { color: var(--accent); }
- 
+
     /* bio content */
     .bio-content {
       max-height: 0;
@@ -278,7 +275,7 @@ Students · HTML
     }
     /* support line breaks in bio */
     .bio-text p + p { margin-top: 10px; }
- 
+
     /* ─────────────── FOOTER ─────────────── */
     footer {
       border-top: 1px solid var(--border);
@@ -314,7 +311,7 @@ Students · HTML
       margin-top: 8px;
       opacity: 0.5;
     }
- 
+
     /* ─────────────── RESPONSIVE ─────────────── */
     @media (max-width: 700px) {
       nav { padding: 0 24px; }
@@ -326,7 +323,7 @@ Students · HTML
   </style>
 </head>
 <body>
- 
+
   <!-- ─── NAV ─── -->
   <nav>
     <a href="index.html" class="nav-logo">Florian Peelman</a>
@@ -339,20 +336,20 @@ Students · HTML
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
- 
+
   <!-- ─── HERO ─── -->
   <header class="hero">
     <p class="hero-label">Florian Peelman</p>
     <h1>My <em>Students</em></h1>
     <p class="hero-sub">A selection of talented violists currently studying or who have studied under Florian Peelman.</p>
   </header>
- 
+
   <!-- ─── STUDENTS GRID ─── -->
   <main class="students-section">
     <div id="status" class="status">Loading students…</div>
     <div id="grid" class="students-grid" style="display:none;"></div>
   </main>
- 
+
   <!-- ─── FOOTER ─── -->
   <footer>
     <span class="footer-logo">Florian Peelman</span>
@@ -363,7 +360,7 @@ Students · HTML
     </ul>
     <p class="footer-copy">© Florian Peelman. All rights reserved.</p>
   </footer>
- 
+
   <script>
     /* ═══════════════════════════════════════════════════════════════════
        CONFIGURATION
@@ -373,17 +370,16 @@ Students · HTML
        3.  Copy the URL that looks like:
              https://docs.google.com/spreadsheets/d/XXXX/pub?output=csv
            and paste it below.
- 
+
        The sheet must have these column headers in row 1 (case-insensitive):
          name | instrument | photo | bio
- 
+
        "instrument" and "photo" are optional — leave the cell blank if unused.
        "bio" can contain line breaks (use Alt+Enter in Google Sheets).
     ═══════════════════════════════════════════════════════════════════ */
     const SHEET_CSV_URL =
-      'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv';
-    //  ↑↑↑  REPLACE THIS WITH YOUR PUBLISHED CSV URL  ↑↑↑
- 
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vQayu9W_U8GOJuAbtoTwruRXO5xbMjfgx_5aFiV0k7H9_P5xKBBwj-OU0Xjw1FIQQ4lIJRUbMza6Z9R/pub?gid=953365315&single=true&output=csv';
+
     /* ─── Parse CSV (handles quoted fields with commas & newlines) ─── */
     function parseCSV(text) {
       const rows = [];
@@ -405,7 +401,7 @@ Students · HTML
       if (field || row.length) { row.push(field); rows.push(row); }
       return rows;
     }
- 
+
     function csvToObjects(rows) {
       if (!rows.length) return [];
       const headers = rows[0].map(h => h.trim().toLowerCase());
@@ -417,31 +413,42 @@ Students · HTML
           return obj;
         });
     }
- 
+
+    /* ─── Convert Google Drive "view" links to direct image URLs ─── */
+    function driveImgUrl(url) {
+      if (!url) return '';
+      // https://drive.google.com/file/d/FILE_ID/view?...
+      const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (m) return `https://lh3.googleusercontent.com/d/${m[1]}=w800`;
+      // already a direct URL
+      return url;
+    }
+
     /* ─── Build card HTML ─── */
     function createCard(student) {
-      const name       = student.name       || 'Student';
-      const instrument = student.instrument || '';
-      const photo      = student.photo      || '';
-      const bio        = student.bio        || '';
- 
-      // Convert plain newlines in bio to <p> tags
-      const bioHTML = bio
+      const name   = student.name   || 'Student';
+      const period = student.instrument || '';   // column reused for study years
+      const photo  = driveImgUrl(student.photo  || '');
+      const bio    = student.bio    || '';
+
+      // Clean up bio: remove stray "" artefacts from CSV, split into paragraphs
+      const cleanBio = bio.replace(/""/g, '').replace(/\\n/g, '\n').trim();
+      const bioHTML = cleanBio
         .split(/\n+/)
         .filter(p => p.trim())
-        .map(p => `<p>${escHtml(p)}</p>`)
+        .map(p => `<p>${escHtml(p.trim())}</p>`)
         .join('') || '<p>Biography coming soon.</p>';
- 
+
       const photoHTML = photo
         ? `<img src="${escAttr(photo)}" alt="${escAttr(name)}" loading="lazy" />`
         : `<div class="placeholder">No photo</div>`;
- 
+
       return `
         <article class="student-card">
           <div class="card-photo">${photoHTML}</div>
           <div class="card-body">
             <h2 class="card-name">${escHtml(name)}</h2>
-            ${instrument ? `<p class="card-instrument">${escHtml(instrument)}</p>` : ''}
+            ${period ? `<p class="card-instrument">${escHtml(period)}</p>` : ''}
             <button class="bio-toggle" aria-expanded="false">
               <span class="toggle-label">Read biography</span>
               <span class="toggle-icon" aria-hidden="true">
@@ -454,14 +461,14 @@ Students · HTML
           </div>
         </article>`;
     }
- 
+
     function escHtml(s) {
       return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
     function escAttr(s) {
       return s.replace(/"/g,'&quot;');
     }
- 
+
     /* ─── Accordion logic ─── */
     function initAccordions() {
       document.querySelectorAll('.bio-toggle').forEach(btn => {
@@ -475,29 +482,29 @@ Students · HTML
         });
       });
     }
- 
+
     /* ─── Fetch & render ─── */
     async function loadStudents() {
       const statusEl = document.getElementById('status');
       const gridEl   = document.getElementById('grid');
- 
+
       try {
         const res = await fetch(SHEET_CSV_URL);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         const rows = parseCSV(text);
         const students = csvToObjects(rows);
- 
+
         if (!students.length) {
           statusEl.textContent = 'No students found in the sheet.';
           return;
         }
- 
+
         gridEl.innerHTML = students.map(createCard).join('');
         statusEl.style.display = 'none';
         gridEl.style.display   = 'grid';
         initAccordions();
- 
+
       } catch (err) {
         console.error(err);
         statusEl.className = 'status error';
@@ -509,10 +516,9 @@ Students · HTML
            </span>`;
       }
     }
- 
+
     loadStudents();
   </script>
- 
+
 </body>
 </html>
- 
