@@ -6,233 +6,137 @@
   <meta name="description" content="Florian Peelman — Students" />
   <title>Florian Peelman — Students</title>
 
-  <!-- ─── FONTS (match site aesthetic: elegant serif + clean sans) ─── -->
+  <!-- Same fonts as the rest of the site -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Your existing stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* ─────────────── VARIABLES ─────────────── */
-    :root {
-      --bg:          #0c0c0c;
-      --bg2:         #111111;
-      --surface:     #1a1a1a;
-      --surface2:    #222222;
-      --border:      rgba(255,255,255,0.08);
-      --accent:      #c8a97e;          /* warm gold — same feel as the site */
-      --accent-dim:  rgba(200,169,126,0.15);
-      --text:        #e8e3db;
-      --text-muted:  #888;
-      --radius:      4px;
-      --nav-h:       72px;
-      --transition:  0.35s cubic-bezier(0.4,0,0.2,1);
-    }
+    /* ── Students-only styles (complement, never override) ── */
 
-    /* ─────────────── RESET ─────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-    img { display: block; max-width: 100%; }
-    a  { color: inherit; text-decoration: none; }
-
-    /* ─────────────── NAV ─────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px;
-      background: rgba(12,12,12,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 400;
-      font-size: 13px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-    .nav-links {
-      display: flex; gap: 36px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color var(--transition);
-    }
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--accent); }
-
-    /* ─────────────── HERO BANNER ─────────────── */
-    .hero {
-      margin-top: var(--nav-h);
-      padding: 80px 48px 64px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
+    /* Hero banner (same pattern as bio.html) */
+    .students-hero {
       position: relative;
+      padding: 10rem var(--gutter) 6rem;
+      background: var(--ink);
+      color: var(--cream);
       overflow: hidden;
+      text-align: left;
     }
-    .hero::before {
+    .students-hero::after {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,169,126,0.07) 0%, transparent 70%);
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 0%,
+        rgba(201,169,110,0.10) 0%, transparent 65%);
       pointer-events: none;
     }
-    .hero-label {
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 7vw, 72px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--text);
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .hero-sub {
-      margin-top: 18px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .students-hero .label { margin-bottom: 1rem; }
+    .students-hero h1    { color: var(--cream); margin-bottom: 0; }
+    .students-hero p     { margin-top: 1rem; color: var(--cream-dim); max-width: 52ch; }
 
-    /* ─────────────── MAIN GRID ─────────────── */
-    .students-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 72px 48px 100px;
-    }
-
-    /* loading / error states */
-    .status {
-      text-align: center;
-      padding: 80px 0;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-    }
-    .status.error { color: #e07070; }
-
+    /* Grid */
     .students-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 700px) {
+      .students-grid { grid-template-columns: 1fr; }
     }
 
-    /* ─────────────── STUDENT CARD ─────────────── */
+    /* Card */
     .student-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: border-color var(--transition), box-shadow var(--transition);
+      background: var(--white);
+      border: 1px solid var(--cream-dim);
+      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
     }
     .student-card:hover {
-      border-color: rgba(200,169,126,0.3);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 48px rgba(26,22,18,0.12);
+      transform: translateY(-3px);
     }
 
-    /* photo */
+    /* Photo */
     .card-photo {
-      position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      background: var(--surface2);
+      background: var(--cream-dim);
     }
     .card-photo img {
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s var(--ease);
     }
-    .student-card:hover .card-photo img {
-      transform: scale(1.04);
-    }
-    /* placeholder when no image */
-    .card-photo .placeholder {
+    .student-card:hover .card-photo img { transform: scale(1.05); }
+    .card-photo .no-photo {
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
-      background: var(--surface2);
-      color: var(--text-muted);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-    }
-
-    /* card body */
-    .card-body {
-      padding: 20px 24px;
-    }
-    .card-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .card-instrument {
-      font-size: 10px;
-      letter-spacing: 0.18em;
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
+      color: var(--ink-soft);
     }
 
-    /* accordion toggle */
+    /* Card body */
+    .card-body { padding: 1.5rem 1.75rem; }
+
+    .card-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+      line-height: 1.15;
+    }
+    .card-period {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Accordion */
     .bio-toggle {
       width: 100%;
       background: none;
       border: none;
-      border-top: 1px solid var(--border);
-      padding: 14px 0 0;
+      border-top: 1px solid var(--cream-dim);
+      padding: 1rem 0 0;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      color: var(--text-muted);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
+      gap: 1rem;
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      transition: color var(--transition);
+      color: var(--ink-soft);
+      transition: color 0.25s;
     }
-    .bio-toggle:hover { color: var(--accent); }
-    .bio-toggle:hover .toggle-icon { border-color: var(--accent); }
+    .bio-toggle:hover { color: var(--gold); }
 
-    .toggle-label { flex: 1; text-align: left; }
     .toggle-icon {
       width: 22px; height: 22px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--cream-dim);
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.25s, background 0.25s, transform 0.35s var(--ease);
     }
     .toggle-icon svg {
       width: 10px; height: 10px;
-      transition: transform var(--transition);
+      transition: transform 0.35s var(--ease);
     }
     .toggle-icon svg path {
       fill: none;
@@ -241,146 +145,137 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-
-    /* open state */
     .student-card.open .toggle-icon {
-      background: var(--accent-dim);
-      border-color: var(--accent);
-      transform: none;
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
     }
-    .student-card.open .toggle-icon svg {
-      transform: rotate(180deg);
-    }
-    .student-card.open .bio-toggle { color: var(--accent); }
+    .student-card.open .toggle-icon svg { transform: rotate(180deg); }
+    .student-card.open .bio-toggle      { color: var(--gold); }
 
-    /* bio content */
+    /* Bio content */
     .bio-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1),
-                  opacity 0.3s ease,
-                  padding 0.3s ease;
       opacity: 0;
+      transition: max-height 0.45s var(--ease), opacity 0.3s ease, padding 0.3s ease;
     }
     .student-card.open .bio-content {
-      max-height: 600px;
+      max-height: 800px;
       opacity: 1;
-      padding-top: 16px;
+      padding-top: 1.1rem;
     }
     .bio-text {
-      font-size: 13px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
       line-height: 1.8;
-      color: #b0a899;
-      padding-bottom: 4px;
+      color: var(--ink-mid);
     }
-    /* support line breaks in bio */
-    .bio-text p + p { margin-top: 10px; }
+    .bio-text p + p { margin-top: 0.75rem; }
 
-    /* ─────────────── FOOTER ─────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .footer-logo {
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-    .footer-links {
-      display: flex; gap: 28px;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color var(--transition);
-    }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-copy {
-      width: 100%;
-      font-size: 11px;
-      color: var(--text-muted);
+    /* Status messages */
+    .students-status {
       text-align: center;
-      margin-top: 8px;
-      opacity: 0.5;
+      padding: 5rem 0;
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
     }
-
-    /* ─────────────── RESPONSIVE ─────────────── */
-    @media (max-width: 700px) {
-      nav { padding: 0 24px; }
-      .nav-links { gap: 20px; }
-      .hero, .students-section { padding-left: 24px; padding-right: 24px; }
-      .students-grid { grid-template-columns: 1fr; }
-      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
-    }
+    .students-status.error { color: #c0392b; }
   </style>
 </head>
 <body>
 
-  <!-- ─── NAV ─── -->
-  <nav>
-    <a href="index.html" class="nav-logo">Florian Peelman</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="bio.html">Biography</a></li>
-      <li><a href="students.html" class="active">Students</a></li>
-      <li><a href="media.html">Media</a></li>
-      <li><a href="index.html#calendar">Calendar</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- ══════════════════════════════════
+       HEADER — exact copy from index.html
+  ══════════════════════════════════ -->
+  <header class="header" id="site-header">
+    <a href="index.html" class="logo">Florian Peelman</a>
 
-  <!-- ─── HERO ─── -->
-  <header class="hero">
-    <p class="hero-label">Florian Peelman</p>
-    <h1>My <em>Students</em></h1>
-    <p class="hero-sub">A selection of talented violists currently studying or who have studied under Florian Peelman.</p>
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Biography</a>
+      <a href="students.html" aria-current="page">Students</a>
+      <a href="media.html">Media</a>
+      <a href="index.html#calendar">Calendar</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <button class="menu-toggle" id="menu-toggle"
+            aria-label="Toggle navigation" aria-expanded="false"
+            aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <!-- ─── STUDENTS GRID ─── -->
-  <main class="students-section">
-    <div id="status" class="status">Loading students…</div>
-    <div id="grid" class="students-grid" style="display:none;"></div>
-  </main>
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
+  <section class="students-hero">
+    <div class="container">
+      <span class="label">Florian Peelman</span>
+      <h1>My <em>Students</em></h1>
+      <p>A selection of talented violists currently studying or who have studied under Florian Peelman.</p>
+    </div>
+  </section>
 
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <span class="footer-logo">Florian Peelman</span>
-    <ul class="footer-links">
-      <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://youtube.com"   target="_blank" rel="noopener">YouTube</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-    <p class="footer-copy">© Florian Peelman. All rights reserved.</p>
+  <!-- ══════════════════════════════════
+       STUDENTS GRID
+  ══════════════════════════════════ -->
+  <section class="section is-visible" style="padding-block: clamp(4rem,8vw,7rem);">
+    <div class="container">
+      <div id="students-status" class="students-status">Loading students…</div>
+      <div id="students-grid"   class="students-grid" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       FOOTER — exact copy from index.html
+  ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">Florian Peelman</span>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com"   target="_blank" rel="noopener">YouTube</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">© Florian Peelman. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
-    /* ═══════════════════════════════════════════════════════════════════
-       CONFIGURATION
-       ───────────────────────────────────────────────────────────────────
-       1.  Open your Google Sheet.
-       2.  File → Share → Publish to web → choose "Sheet1" → CSV → Publish.
-       3.  Copy the URL that looks like:
-             https://docs.google.com/spreadsheets/d/XXXX/pub?output=csv
-           and paste it below.
+    /* ── Header scroll effect (same as index.html) ── */
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
 
-       The sheet must have these column headers in row 1 (case-insensitive):
-         name | instrument | photo | bio
+    /* ── Hamburger menu (same as index.html) ── */
+    const toggle = document.getElementById('menu-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+      document.body.classList.toggle('menu-open', !open);
+    });
+    // Close menu on link click
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      });
+    });
 
-       "instrument" and "photo" are optional — leave the cell blank if unused.
-       "bio" can contain line breaks (use Alt+Enter in Google Sheets).
-    ═══════════════════════════════════════════════════════════════════ */
+    /* ── Google Sheet CSV URL ── */
     const SHEET_CSV_URL =
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vQayu9W_U8GOJuAbtoTwruRXO5xbMjfgx_5aFiV0k7H9_P5xKBBwj-OU0Xjw1FIQQ4lIJRUbMza6Z9R/pub?gid=953365315&single=true&output=csv';
 
-    /* ─── Parse CSV (handles quoted fields with commas & newlines) ─── */
+    /* ── CSV parser (handles quoted fields with commas & newlines) ── */
     function parseCSV(text) {
       const rows = [];
       let row = [], field = '', inQuote = false;
@@ -391,8 +286,8 @@
           else if (ch === '"') { inQuote = false; }
           else { field += ch; }
         } else {
-          if (ch === '"') { inQuote = true; }
-          else if (ch === ',') { row.push(field); field = ''; }
+          if      (ch === '"')  { inQuote = true; }
+          else if (ch === ',')  { row.push(field); field = ''; }
           else if (ch === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
           else if (ch === '\r') { /* skip */ }
           else { field += ch; }
@@ -406,7 +301,7 @@
       if (!rows.length) return [];
       const headers = rows[0].map(h => h.trim().toLowerCase());
       return rows.slice(1)
-        .filter(r => r.some(c => c.trim()))   // skip blank rows
+        .filter(r => r.some(c => c.trim()))
         .map(r => {
           const obj = {};
           headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
@@ -414,26 +309,26 @@
         });
     }
 
-    /* ─── Convert Google Drive "view" links to direct image URLs ─── */
+    /* ── Convert Google Drive share links → embeddable thumbnail ── */
     function driveImgUrl(url) {
       if (!url) return '';
-      // https://drive.google.com/file/d/FILE_ID/view?...
       const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-      if (m) return `https://lh3.googleusercontent.com/d/${m[1]}=w800`;
-      // already a direct URL
+      if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w800`;
       return url;
     }
 
-    /* ─── Build card HTML ─── */
+    /* ── Escape helpers ── */
+    function escHtml(s)  { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function escAttr(s)  { return s.replace(/"/g,'&quot;'); }
+
+    /* ── Build one card ── */
     function createCard(student) {
       const name   = student.name   || 'Student';
-      const period = student.instrument || '';   // column reused for study years
-      const photo  = driveImgUrl(student.photo  || '');
-      const bio    = student.bio    || '';
+      const period = student.instrument || '';
+      const photo  = driveImgUrl(student.photo || '');
+      const bio    = (student.bio || '').replace(/""/g, '').trim();
 
-      // Clean up bio: remove stray "" artefacts from CSV, split into paragraphs
-      const cleanBio = bio.replace(/""/g, '').replace(/\\n/g, '\n').trim();
-      const bioHTML = cleanBio
+      const bioHTML = bio
         .split(/\n+/)
         .filter(p => p.trim())
         .map(p => `<p>${escHtml(p.trim())}</p>`)
@@ -441,39 +336,32 @@
 
       const photoHTML = photo
         ? `<img src="${escAttr(photo)}" alt="${escAttr(name)}" loading="lazy" />`
-        : `<div class="placeholder">No photo</div>`;
+        : `<div class="no-photo">No photo</div>`;
 
       return `
         <article class="student-card">
           <div class="card-photo">${photoHTML}</div>
           <div class="card-body">
             <h2 class="card-name">${escHtml(name)}</h2>
-            ${period ? `<p class="card-instrument">${escHtml(period)}</p>` : ''}
+            ${period ? `<p class="card-period">${escHtml(period)}</p>` : ''}
             <button class="bio-toggle" aria-expanded="false">
               <span class="toggle-label">Read biography</span>
               <span class="toggle-icon" aria-hidden="true">
                 <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg>
               </span>
             </button>
-            <div class="bio-content" role="region">
+            <div class="bio-content">
               <div class="bio-text">${bioHTML}</div>
             </div>
           </div>
         </article>`;
     }
 
-    function escHtml(s) {
-      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
-    function escAttr(s) {
-      return s.replace(/"/g,'&quot;');
-    }
-
-    /* ─── Accordion logic ─── */
+    /* ── Accordion toggle ── */
     function initAccordions() {
       document.querySelectorAll('.bio-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
-          const card = btn.closest('.student-card');
+          const card   = btn.closest('.student-card');
           const isOpen = card.classList.contains('open');
           card.classList.toggle('open', !isOpen);
           btn.setAttribute('aria-expanded', String(!isOpen));
@@ -483,37 +371,28 @@
       });
     }
 
-    /* ─── Fetch & render ─── */
+    /* ── Fetch & render ── */
     async function loadStudents() {
-      const statusEl = document.getElementById('status');
-      const gridEl   = document.getElementById('grid');
-
+      const statusEl = document.getElementById('students-status');
+      const gridEl   = document.getElementById('students-grid');
       try {
-        const res = await fetch(SHEET_CSV_URL);
+        const res  = await fetch(SHEET_CSV_URL);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        const rows = parseCSV(text);
-        const students = csvToObjects(rows);
+        const text     = await res.text();
+        const students = csvToObjects(parseCSV(text));
 
         if (!students.length) {
           statusEl.textContent = 'No students found in the sheet.';
           return;
         }
-
-        gridEl.innerHTML = students.map(createCard).join('');
+        gridEl.innerHTML    = students.map(createCard).join('');
         statusEl.style.display = 'none';
         gridEl.style.display   = 'grid';
         initAccordions();
-
       } catch (err) {
         console.error(err);
-        statusEl.className = 'status error';
-        statusEl.innerHTML =
-          `Could not load students.<br>
-           <span style="font-size:11px;opacity:.7;">
-             Make sure the Google Sheet is published to the web and the URL in
-             <code>SHEET_CSV_URL</code> is correct.
-           </span>`;
+        statusEl.className   = 'students-status error';
+        statusEl.textContent = 'Could not load students — check the Google Sheet URL.';
       }
     }
 
