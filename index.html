@@ -33,8 +33,8 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg">
-  <img src="florianpeelman.jpg.jpg" alt="Florian Peelman">
-</div>
+      <img src="florianpeelman.jpg.jpg" alt="Florian Peelman">
+    </div>
     <div class="hero-content">
       <h1 class="hero-title">Prof.<br />Florian<br /><em>Peelman</em></h1>
       <p class="hero-sub">VIOLIST</p>
@@ -72,31 +72,32 @@
     </div>
   </section>
 
-<!-- MEDIA -->
-<section class="section section--dark" id="media">
-  <div class="container">
-    <span class="label">Media</span>
+  <!-- MEDIA -->
+  <section class="section section--dark" id="media">
+    <div class="container">
+      <span class="label">Media</span>
 
-    <h2>Featured<br /><em>Performance</em></h2>
+      <h2>Featured<br /><em>Performance</em></h2>
 
-<div class="video-wrapper">
-  <iframe 
-    src="https://www.youtube.com/embed/Y04K9-z7pxk"
-    title="Brahms Scherzo arr. for Viola and Piano"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    loading="lazy">
-  </iframe>
-</div>
+      <div class="video-wrapper">
+        <!-- youtube-nocookie: no cookies until the visitor plays the video -->
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/Y04K9-z7pxk"
+          title="Brahms Scherzo arr. for Viola and Piano"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
 
-    <!-- BUTTON TO MEDIA PAGE -->
-    <div style="margin-top: 2rem;">
-      <a href="media.html" class="btn btn--outline">
-        View all media
-      </a>
+      <!-- BUTTON TO MEDIA PAGE -->
+      <div style="margin-top: 2rem;">
+        <a href="media.html" class="btn btn--outline">
+          View all media
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- CALENDAR -->
   <section class="section" id="calendar">
@@ -104,12 +105,10 @@
       <span class="label">Concerts</span>
       <h2>Upcoming<br /><em>Events</em></h2>
       <div class="events-list">
-
-
       </div>
       <div style="margin-top: 2rem;">
-  <a href="events.html" class="btn btn--primary">All events</a>
-</div>
+        <a href="events.html" class="btn btn--primary">All events</a>
+      </div>
     </div>
   </section>
 
@@ -118,38 +117,40 @@
     <div class="container container--narrow">
       <span class="label">Contact</span>
       <h2>Get in<br /><em>Touch</em></h2>
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- WEB3FORMS: paste your access key here -->
+        <input type="hidden" name="access_key" value="df44636d-78b4-4c55-b38b-ab073d1ad492" />
+        <input type="hidden" name="subject" value="New message from florianpeelman.com" />
+        <input type="hidden" name="from_name" value="florianpeelman.com" />
+        <!-- Honeypot anti-spam: hidden from humans, bots tick it -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
         <div class="form-group">
           <label for="name">Name</label>
-          <input id="name" type="text" name="name" placeholder="Your name" autocomplete="name" />
+          <input id="name" type="text" name="name" placeholder="Your name" autocomplete="name" required />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input id="email" type="email" name="email" placeholder="your@email.com" autocomplete="email" />
+          <input id="email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required />
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Your message…"></textarea>
+          <textarea id="message" name="message" rows="5" placeholder="Your message…" required></textarea>
         </div>
-        <button class="btn btn--primary btn--full" type="submit">Send message</button>
-        <p class="form-status" id="formStatus"></p>
+        <button class="btn btn--primary btn--full" type="submit" id="submitBtn">Send message</button>
+        <p class="form-status" id="formStatus" aria-live="polite"></p>
       </form>
+
       <!-- Agencies -->
-<div class="contact-agencies">
-  <h3 class="contact-subtitle">PERSONAL CONTACT</h3>
-
-  <div class="agency-list">
-
-<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#108;&#111;&#114;&#105;&#97;&#110;&#112;&#101;&#101;&#108;&#109;&#97;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#102;&#108;&#111;&#114;&#105;&#97;&#110;&#112;&#101;&#101;&#108;&#109;&#97;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>
-
-
-
-    <a href="https://www.berlinklassikartistmanagement.com/" target="_blank" rel="noopener noreferrer">
-      Berlin Klassik Artist Management
-    </a>
-
-  </div>
-</div>
+      <div class="contact-agencies">
+        <h3 class="contact-subtitle">PERSONAL CONTACT</h3>
+        <div class="agency-list">
+          <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#108;&#111;&#114;&#105;&#97;&#110;&#112;&#101;&#101;&#108;&#109;&#97;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#102;&#108;&#111;&#114;&#105;&#97;&#110;&#112;&#101;&#101;&#108;&#109;&#97;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>
+          <a href="https://www.berlinklassikartistmanagement.com/" target="_blank" rel="noopener noreferrer">
+            Berlin Klassik Artist Management
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -190,14 +191,14 @@
     const nav = document.getElementById('nav');
     const btn = document.getElementById('menuBtn');
 
-btn.addEventListener('click', function() {
-  var open = nav.classList.toggle('is-open');
-  btn.setAttribute('aria-expanded', open);
-  document.body.classList.toggle('menu-open', open);
-  if (open) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-});
+    btn.addEventListener('click', function() {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+      document.body.classList.toggle('menu-open', open);
+      if (open) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
 
     document.querySelectorAll('#nav a').forEach(function(link) {
       link.addEventListener('click', function() {
@@ -227,10 +228,34 @@ btn.addEventListener('click', function() {
       document.getElementById('cookieBanner').style.display = 'flex';
     }
 
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // CONTACT FORM — Web3Forms
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      document.getElementById('formStatus').textContent = 'Thank you — your message has been sent.';
-      this.reset();
+      const form = this;
+      const status = document.getElementById('formStatus');
+      const submitBtn = document.getElementById('submitBtn');
+
+      status.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.textContent = 'Thank you — your message has been sent.';
+          form.reset();
+        } else {
+          status.textContent = 'Something went wrong. Please write to florianpeelman@gmail.com.';
+        }
+      } catch (err) {
+        status.textContent = 'Network error. Please try again later.';
+      } finally {
+        submitBtn.disabled = false;
+      }
     });
 
     var revealEls = document.querySelectorAll('.section, .event-card, .quote');
@@ -245,7 +270,7 @@ btn.addEventListener('click', function() {
     revealEls.forEach(function(el) { io.observe(el); });
   </script>
 
-<!-- SCRIPT CALENDARIO GOOGLE SHEETS -->
+  <!-- SCRIPT CALENDARIO GOOGLE SHEETS -->
   <script>
     const URL_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQayu9W_U8GOJuAbtoTwruRXO5xbMjfgx_5aFiV0k7H9_P5xKBBwj-OU0Xjw1FIQQ4lIJRUbMza6Z9R/pub?gid=0&single=true&output=csv';
 
@@ -291,24 +316,26 @@ btn.addEventListener('click', function() {
       return filas;
     }
 
-fetch(URL_SHEET)
-      .then(r => {
-        console.log('Respuesta Google:', r.status);
-        return r.text();
-      })
+    fetch(URL_SHEET)
+      .then(r => r.text())
       .then(csv => {
-        console.log('CSV recibido:', csv.substring(0, 200));
-        const eventos = parsearCSV(csv);
-        eventos.sort((a, b) => new Date(a.Date) - new Date(b.Date));
-        console.log('Eventos encontrados:', eventos.length);
-        console.log('Primer evento:', eventos[0]);
+        // Only future events (from today), sorted by date
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        const eventos = parsearCSV(csv)
+          .filter(e => {
+            const f = new Date(e.Date + 'T00:00:00');
+            return !isNaN(f) && f >= hoy;
+          })
+          .sort((a, b) => new Date(a.Date) - new Date(b.Date));
+
         const lista = document.querySelector('.events-list');
         if (!eventos.length) {
           lista.innerHTML = '<p>No upcoming events.</p>';
           return;
         }
-lista.innerHTML = eventos.slice(0, 2).map(e => `
-  <article class="event-card is-visible">
+        lista.innerHTML = eventos.slice(0, 2).map(e => `
+          <article class="event-card is-visible">
             <div class="event-meta">
               <time class="event-date" datetime="${e.Date}">
                 ${formatearFecha(e.Date)}
@@ -319,13 +346,14 @@ lista.innerHTML = eventos.slice(0, 2).map(e => `
               <h3 class="event-venue">${e.Venue}</h3>
               <p class="event-program">${e.Program}</p>
             </div>
-            <a class="event-link" href="${e.Link || '#'}">
+            ${e.Link ? `
+            <a class="event-link" href="${e.Link}" target="_blank" rel="noopener noreferrer">
               <span>Details</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" 
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor"
                       stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </a>
+            </a>` : ''}
           </article>
         `).join('');
       })
@@ -334,6 +362,6 @@ lista.innerHTML = eventos.slice(0, 2).map(e => `
         document.querySelector('.events-list').innerHTML = '<p>Could not load events.</p>';
       });
   </script>
-  
+
 </body>
 </html>
