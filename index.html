@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Florian Peelman — Renowned violist performing across Europe and internationally." />
   <title>Florian Peelman — Violist</title>
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -79,15 +80,15 @@
 
       <h2>Featured<br /><em>Performance</em></h2>
 
-      <div class="video-wrapper">
-        <!-- youtube-nocookie: no cookies until the visitor plays the video -->
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/Y04K9-z7pxk"
-          title="Brahms Scherzo arr. for Viola and Piano"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy">
-        </iframe>
+      <!-- The YouTube video only loads after cookies are accepted or play is clicked -->
+      <div class="video-wrapper"
+           data-video-src="https://www.youtube-nocookie.com/embed/Y04K9-z7pxk"
+           data-video-title="Brahms Scherzo arr. for Viola and Piano">
+        <button class="video-consent" type="button">
+          <span class="video-consent__play" aria-hidden="true"></span>
+          <span class="video-consent__text">Play video</span>
+          <span class="video-consent__note">Playing this video loads content from YouTube (Google).</span>
+        </button>
       </div>
 
       <!-- BUTTON TO MEDIA PAGE -->
@@ -168,8 +169,8 @@
   </footer>
 
   <!-- COOKIE BANNER -->
-  <div class="cookie-banner" id="cookieBanner" style="display:none;">
-    <p>We use cookies to improve your experience.</p>
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" style="display:none;">
+    <p>This website uses cookies to improve your experience and to show embedded videos from YouTube.</p>
     <div class="cookie-actions">
       <button class="btn btn--primary btn--sm" onclick="acceptCookies()">Accept</button>
       <button class="btn btn--ghost btn--sm" onclick="rejectCookies()">Reject</button>
@@ -195,9 +196,6 @@
       var open = nav.classList.toggle('is-open');
       btn.setAttribute('aria-expanded', open);
       document.body.classList.toggle('menu-open', open);
-      if (open) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
     });
 
     document.querySelectorAll('#nav a').forEach(function(link) {
@@ -216,16 +214,54 @@
       }
     });
 
+    // COOKIES + VIDEO
+    // localStorage can fail (private mode, blocked storage): never let it break the page
+    function getConsent() {
+      try { return localStorage.getItem('cookies'); } catch (e) { return null; }
+    }
+    function setConsent(value) {
+      try { localStorage.setItem('cookies', value); } catch (e) {}
+    }
+
+    function loadVideo(wrapper, autoplay) {
+      var src = wrapper.getAttribute('data-video-src');
+      if (!src) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = src + (autoplay ? '?autoplay=1' : '');
+      iframe.title = wrapper.getAttribute('data-video-title') || 'Video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      wrapper.innerHTML = '';
+      wrapper.appendChild(iframe);
+      wrapper.removeAttribute('data-video-src');
+    }
+    function loadAllVideos() {
+      document.querySelectorAll('[data-video-src]').forEach(function(w) { loadVideo(w, false); });
+    }
+
+    // Clicking "Play video" loads that video directly
+    document.querySelectorAll('[data-video-src] .video-consent').forEach(function(button) {
+      button.addEventListener('click', function() {
+        loadVideo(button.parentElement, true);
+      });
+    });
+
+    var cookieBanner = document.getElementById('cookieBanner');
     function acceptCookies() {
-      localStorage.setItem('cookies', 'accepted');
-      document.getElementById('cookieBanner').style.display = 'none';
+      setConsent('accepted');
+      cookieBanner.style.display = 'none';
+      loadAllVideos();
     }
     function rejectCookies() {
-      localStorage.setItem('cookies', 'rejected');
-      document.getElementById('cookieBanner').style.display = 'none';
+      setConsent('rejected');
+      cookieBanner.style.display = 'none';
     }
-    if (!localStorage.getItem('cookies')) {
-      document.getElementById('cookieBanner').style.display = 'flex';
+
+    var consent = getConsent();
+    if (consent === 'accepted') {
+      loadAllVideos();
+    } else if (!consent) {
+      cookieBanner.style.display = 'flex';
     }
 
     // CONTACT FORM — Web3Forms
