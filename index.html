@@ -3,12 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Florian Peelman — Renowned violist performing across Europe and internationally." />
-  <title>Florian Peelman — Violist</title>
+  <title>Florian Peelman — Violist · Guest Professor, HfM Hanns Eisler Berlin</title>
+  <meta name="description" content="Florian Peelman, violist and Guest Professor at the Hochschule für Musik Hanns Eisler Berlin. Concerts, biography, media and contact." />
+  <link rel="canonical" href="https://www.florianpeelman.com/" />
   <script>document.documentElement.classList.add('js');</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>  <rect width='64' height='64' rx='12' fill='%231a1612'/>  <text x='32' y='43' text-anchor='middle' font-family='Georgia, 'Times New Roman', serif' font-style='italic' font-size='30' fill='%23c9a96e'>FP</text></svg>" type="image/svg+xml" />
+  <meta name="theme-color" content="#1a1612" />
+
+  <!-- Sharing preview (WhatsApp, LinkedIn, Facebook…) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Florian Peelman" />
+  <meta property="og:title" content="Florian Peelman — Violist" />
+  <meta property="og:description" content="Violist and Guest Professor at the Hochschule für Musik Hanns Eisler Berlin." />
+  <meta property="og:url" content="https://www.florianpeelman.com/" />
+  <meta property="og:image" content="https://www.florianpeelman.com/florianpeelman.jpg.jpg" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Structured data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Florian Peelman",
+    "jobTitle": ["Violist", "Guest Professor"],
+    "url": "https://www.florianpeelman.com/",
+    "sameAs": ["https://www.instagram.com/find_the_flo/", "https://www.youtube.com/@florianpeelman"],
+    "image": "https://www.florianpeelman.com/florianpeelman.jpg.jpg",
+    "worksFor": {
+      "@type": "CollegeOrUniversity",
+      "name": "Hochschule für Musik Hanns Eisler Berlin",
+      "url": "https://www.hfm-berlin.de/"
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -50,11 +81,11 @@
   <!-- PRESS -->
   <section class="section section--dark" id="press">
     <div class="container">
-      <span class="label">Press</span>
-      <blockquote class="quote">
-        <p>"Florian will start his new position as Guest Professor at the Hochschule für Musik Hanns Eisler Berlin in September."</p>
-        <footer>— <cite>Berlin, 2026</cite></footer>
-      </blockquote>
+      <span class="label">News</span>
+      <div class="quote">
+        <p>Since September 2026, Florian Peelman is Guest Professor of Viola at the Hochschule für Musik Hanns Eisler Berlin.</p>
+        <footer>Berlin · September 2026</footer>
+      </div>
     </div>
   </section>
 
@@ -67,7 +98,7 @@
       <div class="split-content">
         <h2>About<br /><em>Florian Peelman</em></h2>
         <p>Florian Peelman is a violist known for his warm, expressive sound and his ability to bring depth and subtle nuance to both solo and chamber music repertoire.</p>
-        <p>His teaching methods are said to help students succeed in highly competitive orchestral auditions, with some going on to secure positions in leading professional orchestras around the world.</p>
+        <p>As a teacher, he prepares students for highly competitive orchestral auditions, and his former students now hold positions in leading professional orchestras around the world.</p>
         <a class="btn btn--primary" href="bio.html">Read full biography</a>
       </div>
     </div>
@@ -138,6 +169,7 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" placeholder="Your message…" required></textarea>
         </div>
+        <p class="form-note">Your data is only used to answer your message. More in the <a href="datenschutz.html">privacy policy</a>.</p>
         <button class="btn btn--primary btn--full" type="submit" id="submitBtn">Send message</button>
         <p class="form-status" id="formStatus" aria-live="polite"></p>
       </form>
@@ -160,9 +192,11 @@
     <div class="footer-inner">
       <div class="footer-brand">FLORIAN PEELMAN</div>
       <nav class="footer-nav">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.instagram.com/find_the_flo/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@florianpeelman" target="_blank" rel="noopener noreferrer">YouTube</a>
         <a href="#contact">Contact</a>
+        <a href="imprint.html">Imprint</a>
+        <a href="datenschutz.html">Datenschutz</a>
       </nav>
       <small class="footer-copy">&copy; <span id="year"></span> Florian Peelman. All rights reserved.</small>
     </div>
@@ -170,7 +204,7 @@
 
   <!-- COOKIE BANNER -->
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" style="display:none;">
-    <p>This website uses cookies to improve your experience and to show embedded videos from YouTube.</p>
+    <p>This website uses cookies to improve your experience and to show embedded videos from YouTube. <a href="datenschutz.html">Privacy policy</a></p>
     <div class="cookie-actions">
       <button class="btn btn--primary btn--sm" onclick="acceptCookies()">Accept</button>
       <button class="btn btn--ghost btn--sm" onclick="rejectCookies()">Reject</button>
